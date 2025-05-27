@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: biniyam-seid-sample-app
+  namespace: biniyam-seid-ugr9483
+  annotations:
+    submitted-by: biniyam-seid-ugr9483
+    author: 'Biniyam Seid - UGR-9483-13'
+    description: 'Sample application for lab report'
+    hostname: 'divinecodecompiler'
+  labels:
+    app: biniyam-seid-sample
+    student: biniyam-seid
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: biniyam-seid-sample
+  template:
+    metadata:
+      annotations:
+        submitted-by: biniyam-seid-ugr9483
+        student-id: 'UGR-9483-13'
+      labels:
+        app: biniyam-seid-sample
+        student: biniyam-seid
+    spec:
+      containers:
+        - name: sample-container
+          image: nginx:1.21
+          ports:
+            - containerPort: 80
+          env:
+            - name: STUDENT_NAME
+              value: 'Biniyam Seid'
+            - name: STUDENT_ID
+              value: 'UGR-9483-13'
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: biniyam-seid-sample-service
+  namespace: biniyam-seid-ugr9483
+  annotations:
+    submitted-by: biniyam-seid-ugr9483
+    author: 'Biniyam Seid - UGR-9483-13'
+  labels:
+    app: biniyam-seid-sample
+    student: biniyam-seid
+spec:
+  selector:
+    app: biniyam-seid-sample
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP

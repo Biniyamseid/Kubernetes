@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: biniyam-seid-app
+  namespace: biniyam-seid-development
+  annotations:
+    author: "Biniyam Seid - UGR-9483-13"
+    description: "Sample application deployment for Kubernetes lab"
+    created-by: "Biniyam Seid"
+    student-id: "UGR-9483-13"
+    hostname: "divinecodecompiler"
+    version: "1.0"
+  labels:
+    app: biniyam-seid-app
+    student: biniyam-seid
+    environment: development
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: biniyam-seid-app
+  template:
+    metadata:
+      annotations:
+        author: "Biniyam Seid - UGR-9483-13"
+        student-id: "UGR-9483-13"
+      labels:
+        app: biniyam-seid-app
+        student: biniyam-seid
+        version: v1
+    spec:
+      containers:
+      - name: biniyam-seid-container
+        image: nginx:1.21
+        ports:
+        - containerPort: 80
+        env:
+        - name: STUDENT_NAME
+          value: "Biniyam Seid"
+        - name: STUDENT_ID
+          value: "UGR-9483-13"
+        - name: HOSTNAME
+          value: "divinecodecompiler"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m" 

@@ -2,7 +2,14 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: biniyam-seid-development
+  annotations:
+    author: 'Biniyam Seid - UGR-9483-13'
+    description: 'Development namespace for Kubernetes lab exercises'
+    created-by: 'Biniyam Seid'
+    student-id: 'UGR-9483-13'
+    hostname: 'divinecodecompiler'
   labels:
     name: biniyam-seid-development
     student: biniyam-seid-ugr-9483-13
     environment: development
+    owner: biniyam-seid
